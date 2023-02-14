@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: edge-service
-          image: edge-service
+          image: ghcr.io/johnathanwan/edge-service:latest
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -27,8 +27,6 @@ spec:
           env:
             - name: POLAR_CATALOG_SERVICE_URI
               value: http://catalog-service
-            - name: SPRING_CLOUD_CONFIG_URI
-              value: http://config-service
             - name: SPRING_CLOUD_CONFIG_URI
               value: http://config-service
             - name: SPRING_DATA_REDIS_HOST
