@@ -21,13 +21,17 @@ extra["testcontainersVersion"] = "1.17.6"
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+	implementation("org.springframework.session:spring-session-data-redis")
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j")
-	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
-	implementation("org.springframework.session:spring-session-data-redis")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("io.netty:netty-resolver-dns-native-macos:4.1.89.Final:osx-aarch_64")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.springframework.security:spring-security-test")
 }
 
 dependencyManagement {
