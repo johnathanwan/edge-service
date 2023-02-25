@@ -25,9 +25,15 @@ spec:
           ports:
             - containerPort: 9000
           env:
-            - name: POLAR_CATALOG_SERVICE_URI
+            - name: CATALOG_SERVICE_URI
               value: http://catalog-service
+            - name: ORDER_SERVICE_URL
+              value: http://order-service
+            - name: SPA_URL
+              value: http://polar-ui
             - name: SPRING_CLOUD_CONFIG_URI
               value: http://config-service
             - name: SPRING_DATA_REDIS_HOST
               value: polar-redis
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+              value: http://polar-keycloak/realms/PolarBookshop
