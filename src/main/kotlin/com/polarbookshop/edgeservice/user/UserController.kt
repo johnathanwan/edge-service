@@ -12,7 +12,12 @@ class UserController {
     @GetMapping("user")
     fun getUser(@AuthenticationPrincipal oidcUser: OidcUser): Mono<User> {
         val user =
-            User(oidcUser.preferredUsername, oidcUser.givenName, oidcUser.familyName, listOf("employee", "customer"))
+            User(
+                oidcUser.preferredUsername,
+                oidcUser.givenName,
+                oidcUser.familyName,
+                oidcUser.getClaimAsStringList("roles")
+            )
         return Mono.just(user)
     }
 }

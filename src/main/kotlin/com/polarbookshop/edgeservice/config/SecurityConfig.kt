@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.*
 import org.springframework.security.oauth2.client.oidc.web.server.logout.*
 import org.springframework.security.oauth2.client.registration.*
+import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizedClientRepository
+import org.springframework.security.oauth2.client.web.server.WebSessionServerOAuth2AuthorizedClientRepository
 import org.springframework.security.web.server.*
 import org.springframework.security.web.server.authentication.*
 import org.springframework.security.web.server.authentication.logout.*
@@ -46,8 +48,13 @@ class SecurityConfig {
         chain.filter(exchange)
     }
 
+
+    @Bean
+    fun authorizedClientRepository(): ServerOAuth2AuthorizedClientRepository =
+        WebSessionServerOAuth2AuthorizedClientRepository()
+
     private fun oidcLogoutSuccessHandler(
-        clientRegistrationRepository: ReactiveClientRegistrationRepository
+        clientRegistrationRepository: ReactiveClientRegistrationRepository,
     ): ServerLogoutSuccessHandler {
         val oidcLogoutSuccessHandler = OidcClientInitiatedServerLogoutSuccessHandler(clientRegistrationRepository)
         oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}")
